@@ -1,0 +1,11 @@
+select * from (
+    select sopp.tanggal as pstanggal, kaliuser.lokasi as pslokasi, sum(sopp.bill) as psl11, sum(sopp.amount) as pspendapatan, sum(sopp.bill)*kaliuser.xadmin as psadmin, sum(sopp.amount)+sum(sopp.bill)*kaliuser.xadmin as psjumlah, pdam.bill as pdbill, pdam.total_kopeg as pdpendapatan
+    from kaliuser 
+    left join sopp on kaliuser.user = sopp.user 
+	left join pdam on kaliuser.user = pdam.loket
+    group by sopp.user
+) as pensopp
+
+select rekap.pslokasi, rekap.psl11, rekap.pspendapatan, rekap.psadmin, rekap.psjumlah, rekap.plbill, rekap. plpendapatan, rekap.pdbill, rekap.pdpendapatan
+
+select rekap.pslokasi, rekap.psl11, rekap.pspendapatan, rekap.psadmin, rekap.psjumlah, rekap.plbill, rekap.plpendapatan, rekap.pdbill, rekap.pdpendapatan, rekap.psjumlah+rekap.plpendapatan+rekap.pdpendapatan as total_trans from ( select sopp.tanggal as pstanggal, kaliuser.lokasi as pslokasi, sum(sopp.bill) as psl11, sum(sopp.amount) as pspendapatan, sum(sopp.bill)*kaliuser.xadmin as psadmin, sum(sopp.amount)+sum(sopp.bill)*kaliuser.xadmin as psjumlah, COALESCE(pln.bill, 0) as plbill, COALESCE(pln.total_kopeg, 0) as plpendapatan, COALESCE(pdam.bill, 0) as pdbill, COALESCE(pdam.total_kopeg, 0) as pdpendapatan from kaliuser left join sopp on kaliuser.user = sopp.user left join pln on kaliuser.user = pln.loket left join pdam on kaliuser.user = pdam.loket group by sopp.user ) as rekap
