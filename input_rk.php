@@ -17,20 +17,20 @@
 <h2 align="center">
             	Input RK dan Transfer Finnet
             	<?php 
-$tanggal1 = $_POST['nilai'];
-$date = explode("-", $tanggal1);
-                    
-                    $arr = array("$date[2]","$date[1]","$date[0]");
-                    
-                    $tampil_date = implode("-", $arr);
-                    if ($tanggal1==$tanggal2)
-	{
-	echo "$tanggal1";
-	}
-	else
-	{
-	echo "$tanggal1";
-	}
+					$tanggal1 = $_POST['nilai'];
+					$date = explode("-", $tanggal1);
+					                    
+					                    $arr = array("$date[2]","$date[1]","$date[0]");
+					                    
+					                    $tampil_date = implode("-", $arr);
+					                    if ($tanggal1==$tanggal2)
+						{
+						echo "$tanggal1";
+						}
+						else
+						{
+						echo "$tanggal1";
+						}
             	?>
 </h2>
 <hr>
@@ -216,11 +216,11 @@ $datatitipan = mysql_fetch_array($ekseskusititipan,MYSQL_ASSOC);
 			<td><div class='col-lg-4'><input type="text" class='form-control' name="finnet1" value="<?php echo "{$data[transfer1]}"; ?>"></td>
 		</tr>
 		<tr>
-			<td class ="tx">Transfer Ke Arindo</td>
+			<td class ="tx">Transfer Ke Finnet</td>
 			<td><div class='col-lg-4'><input type="text" class='form-control' name="finnet2" value="<?php echo "{$data[transfer2]}"; ?>"></td>
 		</tr>
 		<tr>
-			<td class ="tx">Transfer Ke Finnet</td>
+			<td class ="tx">Transfer Ke Arindo</td>
 			<td><div class='col-lg-4'><input type="text" class='form-control' name="finnet3" value="<?php echo "{$data[transfer3]}"; ?>"></td>
 		</tr>
 		<tr>
