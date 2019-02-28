@@ -112,11 +112,8 @@ $tanggal1 = $_POST['nilai'];
                     mysql_select_db($database, $konek) or die("Database tidak bisa dibuka");
                     $c = 0;
                    
-                    $query=mysql_query("SELECT pdam.loket AS pdloket, pdam.`bill`AS pdbill, pdam.`total_kopeg` AS pdpendapatan,fee_pdam.`biaya_admin` AS pdadmin, fee_pdam.`fee_mitra` AS pdfee
-                FROM pdam JOIN fee_pdam ON pdam.`nama_area`=fee_pdam.`pdam` AND tanggal BETWEEN'$tampil_date' AND '$tampil_date2'");
-
-                    
-                   
+                    $query=mysql_query("SELECT pdam.loket AS pdloket, sum(pdam.bill) AS pdbill, sum(pdam.total_kopeg) AS pdpendapatan, fee_pdam.biaya_admin AS pdadmin, fee_pdam.fee_mitra AS pdfee
+                FROM pdam JOIN fee_pdam ON pdam.nama_area=fee_pdam.pdam AND tanggal BETWEEN'$tampil_date' AND '$tampil_date2' GROUP BY pdloket");
 
                     while($row=mysql_fetch_array($query)){
                         $jumlah_desimal ="0";

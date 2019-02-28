@@ -54,30 +54,53 @@ if (isset($_POST['semua']))
 	$arr = array("$date[2]","$date[1]","$date[0]");
 	$tampil_date = implode("-", $arr);
 
-	$query3 = "DELETE from voucher where tanggal='$tampil_date'";
+	$query3 = "TRUNCATE TABLE aora;
+TRUNCATE TABLE arindo_input;
+TRUNCATE TABLE arindo_trx;
+TRUNCATE TABLE fee_admin;
+TRUNCATE TABLE fee_arindo;
+TRUNCATE TABLE indovision;
+TRUNCATE TABLE k_aoratv;
+TRUNCATE TABLE k_arindo;
+TRUNCATE TABLE k_arindo_adira;
+TRUNCATE TABLE k_arindo_adiratv;
+TRUNCATE TABLE k_arindo_baf;
+TRUNCATE TABLE k_arindo_bigtv;
+TRUNCATE TABLE k_arindo_bpjs;
+TRUNCATE TABLE k_arindo_fif;
+TRUNCATE TABLE k_arindo_indovision;
+TRUNCATE TABLE k_arindo_pdam;
+TRUNCATE TABLE k_arindo_pln;
+TRUNCATE TABLE k_arindo_toptv;
+TRUNCATE TABLE k_arindo_voucher;
+TRUNCATE TABLE k_arindo_wom;
+TRUNCATE TABLE k_indovision;
+TRUNCATE TABLE k_pdam;
+TRUNCATE TABLE k_pln;
+TRUNCATE TABLE k_sopp;
+TRUNCATE TABLE k_transvision;
+TRUNCATE TABLE k_voucher_smart;
+TRUNCATE TABLE k_voucher_tri;
+TRUNCATE TABLE k_voucher_tsel;
+TRUNCATE TABLE kinerja_user;
+TRUNCATE TABLE loket;
+TRUNCATE TABLE pdam;
+TRUNCATE TABLE pengawasan;
+TRUNCATE TABLE pln;
+TRUNCATE TABLE rk_input;
+TRUNCATE TABLE saldo;
+TRUNCATE TABLE sopp;
+TRUNCATE TABLE titipan;
+TRUNCATE TABLE titipan2;
+TRUNCATE TABLE total_trx;
+TRUNCATE TABLE transvision;
+TRUNCATE TABLE upload;
+TRUNCATE TABLE voucher;
+TRUNCATE TABLE voucher_tri;
+TRUNCATE TABLE voucher_smart;
+TRUNCATE TABLE voucher_tsel;'";
 	$eksekusi3 = mysql_query($query3,$konek);
-	$query3 = "DELETE from voucher_tri where tanggal='$tampil_date'";
-	$eksekusi3 = mysql_query($query3,$konek);
-	$query3 = "DELETE from transvision where tanggal='$tampil_date'";
-	$eksekusi3 = mysql_query($query3,$konek);
-	$query3 = "DELETE from pln where tanggal='$tampil_date'";
-	$eksekusi3 = mysql_query($query3,$konek);
-	$query3 = "DELETE from pdam where tanggal='$tampil_date'";
-	$eksekusi3 = mysql_query($query3,$konek);
-	$query3 = "DELETE from sopp where tanggal='$tampil_date'";
-	$eksekusi3 = mysql_query($query3,$konek);
-	$query3 = "DELETE from indovision where tanggal='$tampil_date'";
-	$eksekusi3 = mysql_query($query3,$konek);
-	$query3 = "DELETE from arindo_trx where tanggal='$tampil_date'";
-	$eksekusi3 = mysql_query($query3,$konek);
-	$query3 = "DELETE from fee_akses where tanggal='$tampil_date'";
-	$eksekusi3 = mysql_query($query3,$konek);
-}
-
-if (isset($_POST['saldo1']))
-{
-	$query4 = "TRUNCATE TABLE saldo";
-	$eksekusi4 = mysql_query($query4,$konek);
+	
 }
 
 ?>

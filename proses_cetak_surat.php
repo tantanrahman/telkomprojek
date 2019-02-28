@@ -397,7 +397,7 @@ switch ($no_bulan) {
 		<td  style="text-align: center;vertical-align: top;">1.</td>
 		
 		
-		<td colspan="4">Diinformasikan bahwa <b>KOPERASI JASA DADALI BANDUNG, memiliki rekening Giro</b> pada <b>BANK BNI 46 cab Asia Afrika Bandung.</b></td>
+		<td colspan="4">Diinformasikan bahwa <b>KOPERASI JASA DADALI BANDUNG</b>, memiliki rekening Giro pada BANK BNI 46 cab Asia Afrika Bandung dengan nomor rekening a/c 244.692.71.</td>
 	</tr>
 	<tr><td></td></tr>
 	<tr>
@@ -405,7 +405,7 @@ switch ($no_bulan) {
 		<td  style="text-align: center;vertical-align: top;">2.</td>
 		
 		
-		<td colspan="4">Sehubungan dengan hal tersebut di atas, dengan ini mohon untuk melakukan <b>Transfer ke atas nama PT FINNET INDONESIA</b> dengan no</td>
+		<td colspan="4">Sehubungan dengan hal tersebut di atas, dengan ini mohon untuk melakukan pendebetan dari rekening 244.692.71 an KOPERASI JASA DADALI BANDUNG untuk dipindahbukukan ke rekening</td>
 	</tr>
 	<tr>
 		<th align="right">a.</th>
@@ -430,7 +430,7 @@ switch ($no_bulan) {
 		<td></td>
 		
 		
-		<td colspan="4"> atas transaksi SOPP PLN dan PDAM</td>
+		<td colspan="4"> atas transaksi SOPP PLN</td>
 	</tr>	
 	
 	<tr><td></td><td colspan="4" align=center><i>Sebesar : Rp <?php echo "$tampil2";?></i></td></tr>
@@ -453,7 +453,7 @@ switch ($no_bulan) {
 	<tr><td></td><td colspan="4" align=center><i>Sebesar : Rp <?php echo "$tampil3";?></i></td></tr>
 	<tr><td></td><td colspan="4">Terbilang : <?php  echo "$terbilang3"; ?> Rupiah</td></tr>
 	<tr><td></td></tr>
-	<tr><td></td><td colspan="4">dari rekening nomor a/c 244.692.71 atas nama <b>KOPERASI JASA DADALI BANDUNG</b></td></tr>	
+	<!-- <tr><td></td><td colspan="4">dari rekening nomor a/c 244.692.71 atas nama <b>KOPERASI JASA DADALI BANDUNG</b></td></tr> -->	
 	<tr><td></td></tr>
 		
 		<tr><td  style="text-align: center;vertical-align: top;">4</td>
@@ -462,11 +462,10 @@ switch ($no_bulan) {
 	<tr><td></td></tr>
 	<tr>
 		<td></td>
-		<td>A.n PENGURUS KOPERASI JASA DADALI BANDUNG</td>
+		<td colspan="2">A.n PENGURUS KOPERASI JASA DADALI BANDUNG</td>
 	</tr>
 	<tr><td></td></tr>
 	<tr><td></td></tr>
-	
 	
 	</table>
 

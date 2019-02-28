@@ -356,6 +356,7 @@ include('cek-login.php');
                         <li class="divider"></li>
                         <li><a href="index.php?id=79"><i class="fa fa-pencil fa-fw"></i> Input RK/Transfer</a></li>
                         <li><a href="index.php?id=125"><i class="fa fa-pencil fa-fw"></i> Input (Talangan/Titipan)</a></li>
+                        <li><a href="index.php?id=107"><i class="fa fa-pencil fa-fw"></i> Input Saldo akhir</a></li>
                         
                         <?php } ?>
                     </ul>
@@ -405,7 +406,6 @@ include('cek-login.php');
                         <li><a href="index.php?id=27"><i class="fa fa-pencil fa-fw"></i> Edit Kali User</a></li>
                         <li><a href="index.php?id=103"><i class="fa fa-pencil fa-fw"></i> Input Tanggal</a></li>
                         <li><a href="index.php?id=26"><i class="fa fa-pencil fa-fw"></i> Input Fax</a></li>
-                        <li><a href="index.php?id=107"><i class="fa fa-pencil fa-fw"></i> Input Saldo akhir</a></li>
                         <li><a href="index.php?id=101"><i class="fa fa-trash fa-fw"></i> Hapus Pendapatan</a></li>
                         <li class="divider"></li>
                      <?php } ?>

@@ -119,7 +119,7 @@ $tanggal1 = $_POST['nilai'];
                     $c = 0;
                     if ($tanggal1==$tanggal2)
                     {
-                    $query=mysql_query("select lokasi.lokasi, lokasi.loket,pln.tanggal, sum(pln.bill) as bill, sum(pln.total_kopeg) as total_kopeg, ceiling(pln.fee_admin/pln.bill) as bagi,tanggal from lokasi left join pln on lokasi.loket=pln.loket where pln.tanggal = '$tampil_date' or pln.tanggal is NULL  group by lokasi.lokasi, bagi");
+                    $query=mysql_query("SELECT lokasi.lokasi, lokasi.loket, pln.tanggal, sum(pln.bill) as bill, sum(pln.total_kopeg) as total_kopeg, ceiling(pln.fee_admin/pln.bill) as bagi,tanggal from lokasi left join pln on lokasi.loket=pln.loket where pln.tanggal = '$tampil_date' or pln.tanggal is NULL  group by lokasi.lokasi, bagi");
                     }
                     else
                     {

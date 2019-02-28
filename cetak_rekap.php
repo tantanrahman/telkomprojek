@@ -61,7 +61,7 @@ $sql = " Select A.tempat,A.amount,A.feenonadmin,A.adminjastel,A.tanggal as tangg
 		(SELECT lokasi.tempat as tempat, lokasi.loket as loket,lokasi.lokasi as lokasi,sopp.tanggal as tanggal,  sum(sopp.amount) as amount, CASE when lokasi.loket='lembong1' then 0 when lokasi.loket='lembong2' then 0 when lokasi.loket='lembong3' then 0  END as feenonadmin,sum(sopp.surcharge) as adminjastel from lokasi left join sopp on lokasi.loket=sopp.user AND tanggal BETWEEN '$tampil_date' AND '$tampil_date2' group by lokasi.tempat) AS A";
 
 
-$sql2 = "SELECT lokasi.tempat as tempat, lokasi.loket loket,pln.tanggal as tanggal, sum(pln.total_kopeg) as penpln,sum(pln.bill) as bill, ceiling(pln.fee_admin/pln.bill) as bagi, sum(pln.total_kopeg)-sum(case when pln.fee_admin/pln.bill=2500 then 1700*pln.bill when pln.fee_admin/pln.bill=3000 then 2000*pln.bill when pln.fee_admin/pln.bill=5000 then 3300*pln.bill end) as hasil, sum(case when pln.fee_admin/pln.bill=2500 then 1700*pln.bill when pln.fee_admin/pln.bill=3000 then 2000*pln.bill when pln.fee_admin/pln.bill=5000 then 3300*pln.bill end) as hasil2 from lokasi left join pln on lokasi.loket=pln.loket  AND pln.tanggal BETWEEN '$tampil_date' AND '$tampil_date2'  group by lokasi.tempat";
+$sql2 = "SELECT lokasi.tempat as tempat, lokasi.loket loket,pln.tanggal as tanggal, sum(pln.total_kopeg) as penpln,sum(pln.bill) as bill, ceiling(pln.fee_admin/pln.bill) as bagi, sum(pln.total_kopeg)-sum(case when pln.fee_admin/pln.bill=2750 then 2000*pln.bill when pln.fee_admin/pln.bill=3000 then 2000*pln.bill when pln.fee_admin/pln.bill=5000 then 3300*pln.bill end) as hasil, sum(case when pln.fee_admin/pln.bill=2750 then 2000*pln.bill when pln.fee_admin/pln.bill=3000 then 2000*pln.bill when pln.fee_admin/pln.bill=5000 then 3300*pln.bill end) as hasil2 from lokasi left join pln on lokasi.loket=pln.loket  AND pln.tanggal BETWEEN '$tampil_date' AND '$tampil_date2'  group by lokasi.tempat";
 
 $sql3 = "SELECT lokasi.lokasi AS pdlokasi,lokasi.tempat AS tempat, pdam.tanggal AS pdtanggal,  
 lokasi.loket AS pdloket, SUM(pdam.bill) AS pdbill, 
@@ -79,7 +79,7 @@ $sql5 = "SELECT lokasi.tempat as tempat,lokasi.loket, voucher_smart.tanggal as t
 
 $sql6 = "SELECT lokasi.tempat as tempat,lokasi.loket, voucher_tri.tanggal as tanggal,sum(voucher_tri.total_kopeg) as penvouchertri, sum(voucher_tri.fee_ca) as feevouchertri from lokasi left join voucher_tri on lokasi.loket=voucher_tri.user AND tanggal BETWEEN '$tampil_date' AND '$tampil_date2'  group by lokasi.tempat";
 $sql7 = "SELECT lokasi.tempat as tempat, sum(indovision.fee_finnet) as fee_indovision, sum(indovision.kewajiban) as pen_indovision from lokasi left join indovision on lokasi.loket=indovision.loket AND tanggal BETWEEN '$tampil_date' AND '$tampil_date2' group by lokasi.tempat";
-$sql8 = "SELECT lokasi.tempat as tempat, sum(transvision.fee_finnet) as fee_transvision, sum(transvision.kewajiban) as pen_transvision from lokasi left join transvision on lokasi.loket=transvision.loket AND tanggal BETWEEN '$tampil_date' AND '$tampil_date2' group by lokasi.tempat";
+$sql8 = "SELECT lokasi.tempat as tempat, sum(transvision.surcharge-transvision.fee_finnet) as fee_transvision, sum(transvision.kewajiban) as pen_transvision from lokasi left join transvision on lokasi.loket=transvision.loket AND tanggal BETWEEN '$tampil_date' AND '$tampil_date2' group by lokasi.tempat";
 $sql9 = "SELECT lokasi.tempat as tempat, sum(aora.fee_finnet) as fee_aora, sum(aora.kewajiban) as pen_aora from lokasi left join aora on lokasi.loket=aora.loket AND tanggal BETWEEN '$tampil_date' AND '$tampil_date2' group by lokasi.tempat";
 $sql10 = "SELECT lokasi.tempat AS tempat, arindo_trx.tanggal AS tanggal, SUM(arindo_trx.total_trx) AS arindo_pen FROM lokasi LEFT JOIN arindo_trx ON lokasi.user = arindo_trx.kode_user AND tanggal BETWEEN '$tampil_date' AND '$tampil_date2'  GROUP BY lokasi.tempat";
 $sql11 = "SELECT S.tempat,SUM(R.fee_kopeg) AS fee_arindo
@@ -107,9 +107,6 @@ if(! $ambildata )
 {
   die('Gagal ambil data: ' . mysql_error());
 }
-
-
-
 
 
 
@@ -277,7 +274,8 @@ $total= $row['jumlahjastel']+$row2['hasil']+$row2['hasil2']+$row3['penpdam']+$ro
 	echo "<td align=right>".number_format($total, $jumlah_desimal, $pemisah_desimal, $pemisah_ribuan)."</td>";
 	$hapus  = "DELETE FROM total_trx WHERE tanggal='$tampil_date' AND tempat='{$row['tempat']}'";
 	$simpan = "INSERT INTO total_trx VALUES('$tampil_date','{$row['tempat']}',$total)";
-	if ($tampil_date != $tampil_date2) 
+	
+	if ($tampil_date == $tampil_date2) 
 	{mysqli_query($konek,$hapus);
 	mysqli_query($konek,$simpan);}
 	
@@ -354,27 +352,4 @@ $total= $row['jumlahjastel']+$row2['hasil']+$row2['hasil2']+$row3['penpdam']+$ro
 	<td align=right><?=number_format($jumlahtitipan, $jumlah_desimal, $pemisah_desimal, $pemisah_ribuan) ?></td>
 	<td align=right><?=number_format($jumlahtalangan, $jumlah_desimal, $pemisah_desimal, $pemisah_ribuan) ?></td>
 </tr>
-</table>
-
-
-
-
-<table>
-<tr></tr>
-<tr></tr>
-            
-            <tr><td colspan="2">Bandung, ....................</td></tr>
-            <tr><td colspan="2">Yang Menyerahkan </td><td></td><td></td><td>Yang Membuat</td></tr>
-            <tr><td height="125px"></td></tr>
-            <tr><td height="125px"></td></tr>
-			<tr><td height="125px"></td></tr>
-            <tr><td colspan="2"><u>RIYADI DERAJAT</u> </td><td></td><td></td><td>Mira Dewi K</td></tr>
-            <tr><td colspan="2">Manager Jastel & SDM</td></tr>
-            </table>  
-
-</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
 </table>

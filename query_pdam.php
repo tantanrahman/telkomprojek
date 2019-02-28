@@ -64,7 +64,6 @@ $pecah2 = explode("/", $tanggal);
       $query = "INSERT into pdam values('$tampil_date','$jam','$kopegtel','$loket',
         $virtual_account,'$nama_area',$fee_admin,$no_pdam,$trx,$bill,$amount,$total_fee,$total_kopeg)";
         $insertTable= mysql_query($query);
-      
      }
      else
      {
@@ -79,9 +78,6 @@ $pecah2 = explode("/", $tanggal);
         $insertTable= mysql_query($query);
             }
       }
-
-
-
 
 $msg = 'Data PDAM Sudah Ditambahkan';
  
